@@ -9,6 +9,7 @@ def main():
     monitor.filter_by(subsystem='usb')
     monitor.start()
 
+
     for device in iter(monitor.poll, None):
         # I can add more logic here, to run different scripts for different devices.
         # subprocess.call(['/home/foo/foobar.sh', '--foo', '--bar'])
@@ -40,7 +41,7 @@ def main():
                 props = line.decode("utf-8").split('\t')
 
                 if len(props) > 1:
-                    if props[1] == "libinput Accel Speed (309):":
+                    if "libinput Accel Speed (" in props[1]:
                         if props[2] != "-0.600000":
                             need_to_fix = True
                             break

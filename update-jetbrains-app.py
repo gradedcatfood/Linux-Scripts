@@ -19,8 +19,6 @@ def main():
     path = '/home/mmillis/Downloads/' + file_name
     urllib.request.urlretrieve(url, path)
 
-    proc = subprocess.Popen('sudo tar -xzf "/home/mmillis/Downloads/' + file_name + '" -C "/opt"')
-
     print('Unzipping File....')
     archive = tarfile.open('/home/mmillis/Downloads/' + file_name)
 
