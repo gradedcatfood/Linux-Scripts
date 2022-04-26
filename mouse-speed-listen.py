@@ -106,6 +106,11 @@ def main():
 
             command = f'xinput set-prop {m1_id} "libinput Accel Profile Enabled" 0, 1'
             subprocess.run(command, stdout=subprocess.PIPE, shell=True)
+
+
+            # Fix "~"" remap as well
+            subprocess.run('xmodmap ~/.Xmodmap', stdout=subprocess.PIPE, shell=True)
+            
             print('Fixed')    
    
 
