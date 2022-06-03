@@ -41,6 +41,10 @@ def get_code(name):
         code = 'PS'
     elif name == 'datagrip':
         code = 'DG'
+    elif name == 'pycharm':
+        code = 'PC'
+    elif name == 'webstorm':
+        code = 'WS'
     else:
         exit('unkown app name')
 

@@ -91,7 +91,7 @@ def main():
 
                 if len(props) > 1:
                     if "libinput Accel Speed (" in props[1]:
-                        if props[2] != "0.250000":
+                        if props[2] != "0.200000":
                             need_to_fix = True
                             break
 
@@ -101,7 +101,7 @@ def main():
                             break
 
         if need_to_fix and m1_id:
-            command = f'xinput set-prop {m1_id} "libinput Accel Speed" 0.250000'
+            command = f'xinput set-prop {m1_id} "libinput Accel Speed" 0.200000'
             subprocess.run(command, stdout=subprocess.PIPE, shell=True)
 
             command = f'xinput set-prop {m1_id} "libinput Accel Profile Enabled" 0, 1'
