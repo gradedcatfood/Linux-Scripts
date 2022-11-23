@@ -9,20 +9,37 @@ import sys
 def main():
 
     name = sys.argv[1].lower()
+
+    try:
+        eap = sys.argv[2]
+    except IndexError:
+        eap = None
+
     code = get_code(name)
+
+    if eap:
+        print('!!!FETCHING EAP!!!')
+        name = name + '-eap'
+
 
     file_name = 'upgrade-' + name + '.tar.gz'
    
     print('Downloading ' + name + '....')
 
-    url = 'https://data.services.jetbrains.com/products/download?code=' + code + '&platform=linux'
+    if eap:
+        url = 'https://data.services.jetbrains.com/products/download?code=' + code + '&platform=linux&type=eap'
+    else:
+        url = 'https://data.services.jetbrains.com/products/download?code=' + code + '&platform=linux'
+
+    # EAP Version
     path = '/home/mmillis/Downloads/' + file_name
     urllib.request.urlretrieve(url, path)
 
     print('Unzipping File....')
     archive = tarfile.open('/home/mmillis/Downloads/' + file_name)
 
-    dir_name = os.path.commonprefix(archive.getnames())[:-1]
+    # dir_name = os.path.commonprefix(archive.getnames())[:-1]
+    dir_name = os.path.commonprefix(archive.getnames())
 
     archive.extractall('/opt')
     archive.close()
